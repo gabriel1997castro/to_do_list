@@ -1,4 +1,5 @@
 import React from 'react';
+import propTypes from 'prop-types';
 
 class ToDoList extends React.Component {
   constructor(props) {
@@ -8,18 +9,22 @@ class ToDoList extends React.Component {
   }
 
   render() {
+    const { tasks } = this.props;
+    const items = tasks.map((elem) => {
+      return <li>{elem}</li>;
+    });
+
     return (
       <u1>
-        <li>Task 1</li>
-        <li>Task 2</li>
-        <li>Task 3</li>
+        {items}
       </u1>
     );
   }
 }
 
 ToDoList.propTypes = {
-
+  tasks: propTypes.arrayOf(String).isRequired,
 };
+
 
 export default ToDoList;
