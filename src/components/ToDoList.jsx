@@ -10,14 +10,13 @@ class ToDoList extends React.Component {
 
   render() {
     const { tasks } = this.props;
-    const items = tasks.map((elem) => {
-      return <li>{elem}</li>;
-    });
+    // eslint-disable-next-line react/no-array-index-key
+    const items = tasks.map((elem, i) => <li key={i}>{elem}</li>);
 
     return (
-      <u1>
+      <ul>
         {items}
-      </u1>
+      </ul>
     );
   }
 }
