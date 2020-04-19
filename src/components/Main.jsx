@@ -4,17 +4,24 @@ import AddNewTask from './AddNewTask';
 import ToDoList from './ToDoList';
 
 export default class ToDoApp extends Component {
-  constructor() {
+  constructor(props) {
     super();
-    this.state = {};
+
+    this.state = { tasks: props.tasks };
+  }
+
+  updateList(text) {
+    const { tasks: updatedTasks } = this.state;
+    updatedTasks.push(text);
+    this.setState({ tasks: updatedTasks });
   }
 
   render() {
-    const { tasks } = this.props;
+    const { tasks } = this.state;
     return (
       <div>
         <h1>To Do List</h1>
-        <AddNewTask />
+        <AddNewTask updateList={(text) => this.updateList(text)} />
         <ToDoList tasks={tasks} />
       </div>
     );
