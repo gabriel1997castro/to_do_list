@@ -10,6 +10,12 @@ export default class ToDoApp extends Component {
     this.state = { tasks: props.tasks };
   }
 
+  removeTask(text) {
+    const { tasks: updatedTasks } = this.state;
+    updatedTasks.splice(updatedTasks.indexOf(text), 1);
+    this.setState({ tasks: updatedTasks });
+  }
+
   updateList(text) {
     const { tasks: updatedTasks } = this.state;
     updatedTasks.push(text);
@@ -22,7 +28,7 @@ export default class ToDoApp extends Component {
       <div>
         <h1>To Do List</h1>
         <AddNewTask updateList={(text) => this.updateList(text)} />
-        <ToDoList tasks={tasks} />
+        <ToDoList tasks={tasks} remove={(text) => this.removeTask(text)} />
       </div>
     );
   }

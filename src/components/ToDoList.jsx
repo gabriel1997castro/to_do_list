@@ -8,10 +8,21 @@ class ToDoList extends React.Component {
     this.state = {};
   }
 
+  remove(event) {
+    const value = event.target.parentNode.querySelector('span').innerText;
+    const { remove: removeTask } = this.props;
+    removeTask(value);
+  }
+
   render() {
     const { tasks } = this.props;
-    // eslint-disable-next-line react/no-array-index-key
-    const items = tasks.map((elem, i) => <li key={i}>{elem}</li>);
+    const items = tasks.map((elem, i) => (
+      // eslint-disable-next-line react/no-array-index-key
+      <li key={i}>
+        <span>{elem}</span>
+        <button type="button" onClick={(event) => this.remove(event)}>X</button>
+      </li>
+    ));
 
     return (
       <ul>
@@ -23,6 +34,7 @@ class ToDoList extends React.Component {
 
 ToDoList.propTypes = {
   tasks: propTypes.arrayOf(String).isRequired,
+  remove: propTypes.func.isRequired,
 };
 
 
