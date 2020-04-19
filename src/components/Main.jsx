@@ -14,12 +14,18 @@ export default class ToDoApp extends Component {
     const { tasks: updatedTasks } = this.state;
     updatedTasks.splice(updatedTasks.indexOf(text), 1);
     this.setState({ tasks: updatedTasks });
+    this.updateLocalStorage(updatedTasks);
   }
 
   updateList(text) {
     const { tasks: updatedTasks } = this.state;
     updatedTasks.push(text);
     this.setState({ tasks: updatedTasks });
+    this.updateLocalStorage(updatedTasks);
+  }
+
+  updateLocalStorage(updatedTasks) {
+    localStorage.setItem('storedTasks', JSON.stringify(updatedTasks));
   }
 
   render() {
